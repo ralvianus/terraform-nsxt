@@ -35,7 +35,7 @@ data "nsxt_policy_transport_zone" "tz-host-overlay" {
   display_name = "tz-host-overlay"
 }
 
-data "nsxt_policy_tier0_gateway" "" {
+data "nsxt_policy_tier0_gateway" "t0-gateway" {
   display_name = "t0-core"
 }
 
