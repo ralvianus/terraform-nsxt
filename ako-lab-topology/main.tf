@@ -100,8 +100,8 @@ resource "nsxt_policy_segment" "ocp-east-00" {
       lease_time     = 36000
       }
     }
-  }
 }
+
 
 resource "nsxt_policy_segment" "ocp-west-00" {
   nsx_id              = "ocp-west-00"
@@ -119,8 +119,8 @@ resource "nsxt_policy_segment" "ocp-west-00" {
       lease_time     = 36000
       }
     }
-  }
 }
+
 
 resource "nsxt_policy_segment" "avi-mgmt-00" {
   nsx_id              = "avi-mgmt-00"
@@ -132,5 +132,4 @@ resource "nsxt_policy_segment" "avi-mgmt-00" {
   subnet {
     cidr        = "10.20.10.1/24"
     }
-  }
 }
