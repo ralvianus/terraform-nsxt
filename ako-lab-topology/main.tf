@@ -35,7 +35,7 @@ data "nsxt_policy_transport_zone" "tz-host-overlay" {
   display_name = "tz-host-overlay"
 }
 
-data "nsxt_policy_tier0_gateway" "t0-gateway" {
+data "nsxt_policy_tier0_gateway" "" {
   display_name = "t0-core"
 }
 
@@ -50,13 +50,13 @@ resource "nsxt_policy_tier1_gateway" "t1_east" {
   display_name              = "t1-east"
   description               = "Tier1-east provisioned by Terraform"
   edge_cluster_path         = data.nsxt_policy_edge_cluster.edge-cluster.path
-  dhcp_config_path          = nsxt_policy_dhcp_server.dhcp-server.path
+  dhcp_config_path          = data.nsxt_policy_dhcp_server.dhcp-server.path
   failover_mode             = "PREEMPTIVE"
   default_rule_logging      = "false"
   enable_firewall           = "false"
   enable_standby_relocation = "false"
   force_whitelisting        = "true"
-  tier0_path                = data.nsxt_policy_tier0_gateway.t0_gateway.path
+  tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
   route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
 }
@@ -66,13 +66,13 @@ resource "nsxt_policy_tier1_gateway" "t1_west" {
   display_name              = "t1-west"
   description               = "Tier1-west provisioned by Terraform"
   edge_cluster_path         = data.nsxt_policy_edge_cluster.edge-cluster.path
-  dhcp_config_path          = nsxt_policy_dhcp_server.dhcp-server.path
+  dhcp_config_path          = data.nsxt_policy_dhcp_server.dhcp-server.path
   failover_mode             = "PREEMPTIVE"
   default_rule_logging      = "false"
   enable_firewall           = "false"
   enable_standby_relocation = "false"
   force_whitelisting        = "true"
-  tier0_path                = data.nsxt_policy_tier0_gateway.t0_gateway.path
+  tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
   route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
 }
@@ -87,7 +87,7 @@ resource "nsxt_policy_tier1_gateway" "t1_avi" {
   enable_firewall           = "false"
   enable_standby_relocation = "false"
   force_whitelisting        = "true"
-  tier0_path                = data.nsxt_policy_tier0_gateway.t0_gateway.path
+  tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
   route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
 }
