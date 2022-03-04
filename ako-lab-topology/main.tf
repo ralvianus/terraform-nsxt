@@ -3,6 +3,15 @@
 # REST API running on the NSX manager.
 #
 
+terraform {
+  required_providers {
+    nsxt = {
+      source = "vmware/nsxt"
+    }
+  }
+  required_version = ">= 0.13"
+}
+
 provider "nsxt" {
   host                  = var.nsxt_host
   username              = var.nsxt_username
