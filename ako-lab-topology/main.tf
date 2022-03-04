@@ -147,6 +147,5 @@ resource "nsxt_policy_segment" "avi-mgmt-00" {
       server_address = "100.96.0.1/30"
       lease_time     = 36000
       }
-    }
   }
 }
