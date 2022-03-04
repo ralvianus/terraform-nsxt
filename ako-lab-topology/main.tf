@@ -82,6 +82,7 @@ resource "nsxt_policy_tier1_gateway" "t1_avi" {
   display_name              = "t1-avi"
   description               = "Tier1-avi provisioned by Terraform"
   edge_cluster_path         = data.nsxt_policy_edge_cluster.edge-cluster.path
+  dhcp_config_path          = data.nsxt_policy_dhcp_server.dhcp-server.path
   failover_mode             = "PREEMPTIVE"
   default_rule_logging      = "false"
   enable_firewall           = "false"
@@ -140,5 +141,12 @@ resource "nsxt_policy_segment" "avi-mgmt-00" {
 
   subnet {
     cidr        = "10.20.10.1/24"
+    dhcp_ranges = ["10.20.10.51-10.20.10.100"]
+
+    dhcp_v4_config {
+      server_address = "100.96.0.1/30"
+      lease_time     = 36000
+      }
     }
+  }
 }
