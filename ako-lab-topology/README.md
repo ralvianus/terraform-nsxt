@@ -1,6 +1,8 @@
+## [`terraform-nsxt`](../README.md)`/ako-lab-topology`
 This is the lab topology for AKO demo in NSX-T Cloud environment
 Clone repository and adjust `terraform.tfvars` and `main.tf` as required  
 
+![](https://i.imgur.com/kv9B0GM.png)
 ---
 
 #### `run`
