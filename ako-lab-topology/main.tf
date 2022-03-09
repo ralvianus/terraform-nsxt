@@ -108,6 +108,7 @@ resource "nsxt_policy_segment" "ocp-east-00" {
     dhcp_v4_config {
       server_address = "100.96.0.1/30"
       lease_time     = 36000
+      dns_servers    = ["172.16.10.1"]
       }
     }
 }
@@ -127,6 +128,7 @@ resource "nsxt_policy_segment" "ocp-west-00" {
     dhcp_v4_config {
       server_address = "100.96.0.1/30"
       lease_time     = 36000
+      dns_servers    = ["172.16.10.1"]
       }
     }
 }
@@ -146,6 +148,7 @@ resource "nsxt_policy_segment" "avi-mgmt-00" {
     dhcp_v4_config {
       server_address = "100.96.0.1/30"
       lease_time     = 36000
+      dns_servers    = ["172.16.10.1"]
       }
   }
 }
