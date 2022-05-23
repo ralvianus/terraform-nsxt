@@ -55,7 +55,6 @@ resource "nsxt_policy_tier1_gateway" "t1_east" {
   default_rule_logging      = "false"
   enable_firewall           = "false"
   enable_standby_relocation = "false"
-  force_whitelisting        = "true"
   tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
   route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
@@ -71,7 +70,6 @@ resource "nsxt_policy_tier1_gateway" "t1_west" {
   default_rule_logging      = "false"
   enable_firewall           = "false"
   enable_standby_relocation = "false"
-  force_whitelisting        = "true"
   tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
   route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
@@ -87,7 +85,6 @@ resource "nsxt_policy_tier1_gateway" "t1_avi" {
   default_rule_logging      = "false"
   enable_firewall           = "false"
   enable_standby_relocation = "false"
-  force_whitelisting        = "true"
   tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
   route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
