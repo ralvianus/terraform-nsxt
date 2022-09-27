@@ -89,7 +89,7 @@ resource "nsxt_policy_segment" "ls-tas-deployment-01" {
   nsx_id              = "ls-tas-deployment-01"
   display_name        = "ls-tas-deployment-01"
   description         = "Terraform provisioned ls-tas-deployment-01 Segment"
-  connectivity_path   = nsxt_policy_tier1_gateway.t1-tas.path
+  connectivity_path   = data.nsxt_policy_tier1_gateway.t1-tas.path
   transport_zone_path = data.nsxt_policy_transport_zone.tz-host-overlay.path
 
   subnet {
