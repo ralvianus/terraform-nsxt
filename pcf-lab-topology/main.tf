@@ -47,6 +47,43 @@ data "nsxt_policy_dhcp_server" "dhcp-server" {
   display_name     = "DHCP config TAS"
 }
 
+# Allowing avi-segment to be advertised
+# Creating prefix list
+resource "nsxt_policy_gateway_prefix_list" "pf-avi-mgmt" {
+  gateway_path = data.nsxt_policy_tier0_gateway.t0-gateway.path
+  display_name = "pf-avi-mgmt"
+  description  = "Prefix list for AVI mgmt segment"
+
+  prefix {
+    action  = "PERMIT"
+    network = "10.20.10.0/24"
+  }
+}
+
+# Creating route map
+resource "nsxt_policy_gateway_route_map" "rm-avi-mgmt" {
+  display_name = "rm-avi-mgmt"
+  description  = "route map for avi-mgmt prefix list"
+  gateway_path = data.nsxt_policy_tier0_gateway.t0-gateway.path
+
+  entry {
+    action = "PERMIT"
+    prefix_list_matches = [nsxt_policy_gateway_prefix_list.pf-avi-mgmt.path]
+  }
+}
+
+# Adding redistribution config
+resource "nsxt_policy_gateway_redistribution_config" "rrd-avi-mgmt" {
+  gateway_path = data.nsxt_policy_tier0_gateway.t0-gateway.path
+  bgp_enabled  = true
+
+  rule {
+    name  = "Allow AVI"
+    types = ["TIER1_CONNECTED"]
+    route_map_path = nsxt_policy_gateway_route_map.rm-avi-mgmt.path
+  }
+}
+
 # Creating Tier1-Gateway
 
 resource "nsxt_policy_tier1_gateway" "t1_avi" {
