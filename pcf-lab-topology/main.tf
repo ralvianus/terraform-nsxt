@@ -84,7 +84,7 @@ resource "nsxt_policy_gateway_redistribution_config" "rrd-avi-mgmt" {
   }
   rule {
     name  = "RRD"
-    types = ["TIER0_CONNECTED", "TIER0_NAT", "TIER0_EXTERNAL_INTERFACE", "TIER0_CONNECTED", "TIER0_SERVICE_INTERFACE", "TIER0_LOOPBACK_INTERFACE", "TIER1_LB_SNAT", "TIER1_LB_SNAT", "TIER1_NAT"]
+    types = ["TIER0_CONNECTED", "TIER0_NAT", "TIER0_EXTERNAL_INTERFACE", "TIER0_CONNECTED", "TIER0_SERVICE_INTERFACE", "TIER0_LOOPBACK_INTERFACE", "TIER1_LB_SNAT", "TIER1_LB_VIP", "TIER1_NAT"]
   }
 }
 
@@ -110,6 +110,7 @@ resource "nsxt_policy_tier1_gateway" "t1_tas" {
   display_name              = "T1-Router-TAS-Deployment"
   dhcp_config_path          = data.nsxt_policy_dhcp_server.dhcp-server.path
   tier0_path                = data.nsxt_policy_tier0_gateway.t0-gateway.path
+  route_advertisement_types = ["TIER1_CONNECTED", "TIER1_STATIC_ROUTES", "TIER1_LB_VIP"]
 }
 
 # Creating Segments
