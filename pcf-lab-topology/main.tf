@@ -64,8 +64,7 @@ resource "nsxt_policy_tier1_gateway" "t1_avi" {
   pool_allocation           = "ROUTING"
 }
 
-resource "nsxt_policy_tier1_gateway" "t1_tas" {
-  nsx_id                    = "T1-Router-TAS-Deployment"
+data "nsxt_policy_tier1_gateway" "t1_tas" {
   display_name              = "T1-Router-TAS-Deployment"
   dhcp_config_path          = data.nsxt_policy_dhcp_server.dhcp-server.path
 }
