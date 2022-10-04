@@ -79,8 +79,12 @@ resource "nsxt_policy_gateway_redistribution_config" "rrd-avi-mgmt" {
 
   rule {
     name  = "Allow AVI"
-    types = ["TIER1_CONNECTED"]
+    types = ["TIER1_CONNECTED", "TIER1_STATIC"]
     route_map_path = nsxt_policy_gateway_route_map.rm-avi-mgmt.path
+  }
+  rule {
+    name  = "RRD"
+    types = ["TIER0_CONNECTED", "TIER0_NAT", "TIER0_EXTERNAL_INTERFACE", "TIER0_CONNECTED", "TIER0_SERVICE_INTERFACE", "TIER0_LOOPBACK_INTERFACE", "TIER1_LB_SNAT", "TIER1_LB_SNAT", "TIER1_NAT"]
   }
 }
 
